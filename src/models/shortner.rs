@@ -5,35 +5,35 @@ use uuid::Uuid;
 
 #[derive(Debug, Clone, Serialize, Deserialize, FromRow)]
 pub struct User {
-    id: Uuid,
+    pub id: Uuid,
     #[serde(skip_serializing)]
-    password_hash: String,
-    username: String,
-    created_at: DateTime<Utc>,
+    pub password_hash: String,
+    pub username: String,
+    pub created_at: DateTime<Utc>,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize, FromRow)]
 pub struct Link {
-    id: Uuid,
-    url: String,
-    short_url: String,
-    account: Option<Uuid>,
-    created_at: DateTime<Utc>,
+    pub id: Uuid,
+    pub url: String,
+    pub short_url: String,
+    pub account: Option<Uuid>,
+    pub created_at: DateTime<Utc>,
 }
 
 #[derive(Deserialize)]
 pub struct UserRegister {
-    password: String,
-    username: String,
+    pub password: String,
+    pub username: String,
 }
 
 #[derive(Deserialize)]
 pub struct UserLogin {
-    password: String,
-    username: String,
+    pub password: String,
+    pub username: String,
 }
 
 #[derive(Deserialize)]
 pub struct UploadLink {
-    url: String,
+    pub url: String,
 }
