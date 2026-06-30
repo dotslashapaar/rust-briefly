@@ -9,7 +9,7 @@ pub struct User {
     #[serde(skip_serializing)]
     password_hash: String,
     username: String,
-    created_at: DateTime<Utc>
+    created_at: DateTime<Utc>,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize, FromRow)]
@@ -18,7 +18,7 @@ pub struct Link {
     url: String,
     short_url: String,
     account: Option<Uuid>,
-    created_at: DateTime<Utc>
+    created_at: DateTime<Utc>,
 }
 
 #[derive(Deserialize)]
@@ -35,5 +35,5 @@ pub struct UserLogin {
 
 #[derive(Deserialize)]
 pub struct UploadLink {
-    url: String
+    url: String,
 }
