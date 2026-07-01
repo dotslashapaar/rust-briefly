@@ -14,6 +14,7 @@ use crate::{
 pub struct AppState {
     pub shortner_repo: ShortnerRepo,
     pub user_repo: UserRepo,
+    pub jwt_secret: String,
 }
 
 pub async fn create_link_handler(
