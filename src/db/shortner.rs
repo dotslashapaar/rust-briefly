@@ -17,18 +17,19 @@ impl ShortnerRepo {
         Self { pool }
     }
 
-    pub async fn create_link(&self, url: String) -> AppResult<Link> {
+    pub async fn create_link(&self, url: String, account: Option<Uuid>) -> AppResult<Link> {
         let short_url = url_shortner(&url);
         let id = Uuid::new_v4();
 
         let link = sqlx::query_as!(
             Link,
-            "INSERT INTO links (id, url, short_url) VALUES ($1, $2, $3) \
+            "INSERT INTO links (id, url, short_url, account) VALUES ($1, $2, $3, $4) \
              ON CONFLICT (short_url) DO UPDATE SET short_url = links.short_url \
              RETURNING *",
             id,
             url,
-            short_url
+            short_url,
+            account
         )
         .fetch_one(&self.pool)
         .await?;
